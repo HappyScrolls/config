@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tcc-react-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcc-react-app
+  template:
+    metadata:
+      labels:
+        app: tcc-react-app
+    spec:
+      containers:
+      - name: tcc-react-app
+        image: hyuksoon/tcc-react-app:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tcc-react-app-service
+spec:
+  selector:
+    app: tcc-react-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
