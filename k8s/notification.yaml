@@ -30,5 +30,4 @@ spec:
     - protocol: TCP
       port: 8034
       targetPort: 8034
-      nodePort: 32004
-  type: NodePort
+  type: LoadBalancer
